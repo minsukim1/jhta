@@ -27,13 +27,13 @@ public class BookstoreApp {
 			if (menuNo == 1) {
 				System.out.println("[회원 관리]");
 				System.out.println("=========================================");
-				System.out.println("1.등록   2.조회   3.변경   4.탈퇴   5.전체조회");
+				System.out.println("1.등록   2.조회   3.변경   4.탈퇴   5.전체조회 6.대여 현황 조회");
 				System.out.println("=========================================");
 
 				System.out.print("메뉴를 선택하세요 : ");
-				int userNo = scanner.nextInt();// 숫자선택
+				int userMenuNo = scanner.nextInt();// 숫자선택
 
-				if (userNo == 1) {
+				if (userMenuNo == 1) {
 					// 등록 service. userservice + user
 					System.out.println("[신규 회원 등록]");
 					System.out.print("이름을 입력하세요 : ");
@@ -43,47 +43,61 @@ public class BookstoreApp {
 
 					service.addNewUser(name, tel);
 					System.out.println("###회원 등록이 완료되었습니다.");
-				} else if (userNo == 2) {
+				} else if (userMenuNo == 2) {
 					// 조회
 					System.out.print("조회할 회원번호를 입력하세요 : ");
 					int userNum = scanner.nextInt();
+
 					service.retrieveUserInfo(userNum);
-				} else if (userNo == 3) {
+
+				} else if (userMenuNo == 3) {
 					// 변경
 					System.out.print("변경할 회원의 회원번호를 입력하세요 : ");
-					int cUser = scanner.nextInt();
+					int userNo = scanner.nextInt();
 					System.out.print("변경할 이름을 입력하세요 : ");
-					String cName = scanner.next();
+					String userName = scanner.next();
 					System.out.print("변경할 전화번호를 입력하세요 : ");
-					String cTel = scanner.next();
-					System.out.print("변경할 포인트를 입력하세요 : ");
-					int cPoint = scanner.nextInt();
-					User cuser = new User(cUser, cName, cTel, cPoint, false);
-					service.modifyUserInfo(cuser);
-					System.out.println("수정되었습니다.");
-				} else if (userNo == 4) {
-					System.out.println("탈퇴할 회원의 회원번호를 입력하세요 : ");
-					int number = scanner.nextInt();
-					service.disabledUser(number);
+					String userTel = scanner.next();
 
-				} else if (userNo == 5) {
+					User user = new User();
+					user.no = userNo;
+					user.name = userName;
+					user.tel = userTel;
+
+					service.modifyUserInfo(user);
+					System.out.println("수정되었습니다.");
+				} else if (userMenuNo == 4) {
+					System.out.println("탈퇴할 회원의 회원번호를 입력하세요 : ");
+					int userNo = scanner.nextInt();
+
+					service.disabledUser(userNo);
+
+				} else if (userMenuNo == 5) {
 					System.out.println("[전체 회원 조회]");
+
 					service.retrieveAllUsers();
+				} else if (userMenuNo == 6) {
+					System.out.println("[대여 현황 조회]");
+					System.out.print("조회할 회원의 이름을 입력하세요 : ");
+					String userName = scanner.next();
+
+					service.retrieveAllUserRentals(userName);
+
 				}
 			} else if (menuNo == 2) {
 				System.out.println("[도서 관리]");
-				System.out.println("=========================================");
-				System.out.println("1.검색    2.등록    3.수정  4.전체조회");
-				System.out.println("=========================================");
+				System.out.println("==================================================");
+				System.out.println("1.검색    2.등록    3.수정  4.전체조회  5.책대여회원조회");
+				System.out.println("==================================================");
 				System.out.print("메뉴를 선택하세요 : ");
-				int bookNo = scanner.nextInt();
+				int bookMenuNo = scanner.nextInt();
 
-				if (bookNo == 1) {
+				if (bookMenuNo == 1) {
 					System.out.println("검색할 도서의 번호를 입력하세요  : ");
 					int bookNum = scanner.nextInt();
-					service.findBookByNo(bookNum);
 
-				} else if (bookNo == 2) {
+					service.findBookByNo(bookNum);
+				} else if (bookMenuNo == 2) {
 					System.out.print("등록할 도서의 제목을 입력하세요 : ");
 					String title = scanner.next();
 					System.out.print("등록할 도서의 저자를 입력하세요 : ");
@@ -93,49 +107,67 @@ public class BookstoreApp {
 
 					service.insertNewBook(title, writer, price);
 					System.out.println("등록 완료!");
-				} else if (bookNo == 3) {
+				} else if (bookMenuNo == 3) {
 					// 수정
 					System.out.print("수정할 책의 번호를 입력하세요 : ");
-					int bNum = scanner.nextInt();
+					int bookNo = scanner.nextInt();
 					System.out.print("수정할 책의 제목을 입력하세요 : ");
-					String bTitle = scanner.next();
+					String bookTitle = scanner.next();
 					System.out.print("수정할 책의 저자를 입력하세요 : ");
-					String bWriter = scanner.next();
+					String bookWriter = scanner.next();
 					System.out.print("수정할 책의 가격을 입력하세요 : ");
-					int bPrice = scanner.nextInt();
-					Book book = new Book(bNum, bTitle, bWriter, bPrice, 10000);
+					int bookPrice = scanner.nextInt();
+
+					Book book = new Book(bookNo, bookTitle, bookWriter, bookPrice, 10000);
 					service.modifyBook(book);
-				} else if (bookNo == 4) {
+				} else if (bookMenuNo == 4) {
 					System.out.println("[전체 도서 조회]");
+
 					service.retrieveAllBooks();
+				} else if (bookMenuNo == 5) {
+					System.out.println("[책 대여 회원 조회]");
+					System.out.print("도서번호를 입력하세요 : ");
+					int bookNo = scanner.nextInt();
+
+					service.retrieveUserByBookNo(bookNo);
 				}
 
 			} else if (menuNo == 3) {
 				System.out.println("[대여/반납 관리");
 				System.out.println("=========================================");
-				System.out.println("1.대여  2.반납   3.대여현황조회");
+				System.out.println("1.대여  2.반납   3.대여현황조회 4.일괄반납처리");
 				System.out.println("=========================================");
 
 				System.out.print("메뉴를 선택하세요 : ");
-				int rentalNo = scanner.nextInt();
+				int rentalMenuNo = scanner.nextInt();
 
-				if (rentalNo == 1) {
+				if (rentalMenuNo == 1) {
 					System.out.println("[대여 시스템]");
 					System.out.println("사용자 번호를 입력하세요 :");
-					int sNum = scanner.nextInt();
+					int userNo = scanner.nextInt();
 					System.out.println("대여하실 도서번호를 입력하세요 : ");
-					int dNum = scanner.nextInt();
-					service.rentBook(sNum, dNum);
+					int bookNo = scanner.nextInt();
+
+					service.rentBook(userNo, bookNo);
 					System.out.println("대여 완료");
-				} else if (rentalNo == 2) {
+				} else if (rentalMenuNo == 2) {
 					System.out.println("[반납 시스템]");
 					System.out.println("대여 번호를 입력하세요 : ");
 					int renNum = scanner.nextInt();
+
 					service.returnBook(renNum);
 					System.out.println("반납 완료");
-				} else if (rentalNo == 3) {
+				} else if (rentalMenuNo == 3) {
 					System.out.println("[대여 현황 조회]");
+
 					service.retrieveAllRentals();
+				} else if (rentalMenuNo == 4) {
+					System.out.println("[일괄 반납 처리]");
+					System.out.print("반납처리할 회원의 회원번호를 입력하세요 : ");
+					int rentalUser = scanner.nextInt();
+
+					service.retrieveAllUserNo(rentalUser);
+
 				}
 			} else if (menuNo == 0) {
 				System.out.println("프로그램을 종료합니다.");

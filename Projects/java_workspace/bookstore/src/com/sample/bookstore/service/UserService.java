@@ -57,4 +57,14 @@ public class UserService {
 	public User[] getAllUsers() {
 		return db;
 	}
+	public User findUserByName(String name) {
+		User result = null;
+		for(int i =0; i<position; i++) {
+			if(name.equals(db[i].name)) {
+				result = db[i];
+			}
+		}
+		
+		return result;
+	}
 }
