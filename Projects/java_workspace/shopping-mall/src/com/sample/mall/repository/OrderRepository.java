@@ -7,7 +7,8 @@ public class OrderRepository {
 	private Order[] db = new Order[20];
 	private int position = 0;
 	private int sequence = 30001;
-	
+	private Order[] result = new Order[20];
+
 	/**
 	 * 주문정보(Order객체)를 전달받아서 배열에 저장한다.<br />
 	 * 
@@ -29,16 +30,16 @@ public class OrderRepository {
 	 * @param userId
 	 * @return
 	 */
-	public Order getOrderByUserId(String userId) {
-		Order result = null;
+	public Order[] getOrderByUserId(String userId) {
+		int arrcount = 0;
 		for (int i=0; i<position; i++){
-			if(db[i]==null) {
-				break;
-			}
 			if(userId.equals(db[i].userId)) {
-				result = db[i];
+				result[arrcount] = db[i];
+				arrcount++;
 			}
+
 		}
+		
 		return result;
 	}
 	
