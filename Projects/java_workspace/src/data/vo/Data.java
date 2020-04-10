@@ -7,8 +7,9 @@ public class Data {
 	private String sido;
 	private String gugun;
 	private String violation;
-	
-	public Data () {}
+
+	public Data() {
+	}
 
 	public String getDay() {
 		return day;
@@ -57,6 +58,5 @@ public class Data {
 	public void setGugun(String gugun) {
 		this.gugun = gugun;
 	}
-	
-	
+
 }

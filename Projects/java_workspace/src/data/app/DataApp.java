@@ -46,15 +46,20 @@ public class DataApp {
 					System.out.println("[지역별 통계]");
 					System.out.print("조회할 시,도 이름을 입력하세요 (2글자) : ");
 					String sido = scanner.next();
-					
+
 					service.printDataStatBySido(sido);
 				} else if (statMenuNo == 2) {
-
+					System.out.println("[월별 통계]");
+					service.printDataStatByMonth();
 				} else if (statMenuNo == 3) {
-
+					System.out.println("[요일별 통계]");
+					service.printDataStatByDayOfWeek();
 				} else if (statMenuNo == 4) {
-
+					System.out.println("[위반내용별 통계]");
+					service.printDataStatByViolation();
 				} else if (statMenuNo == 5) {
+					System.out.println("[요약정보 보기]");
+					service.printDataStat();
 
 				}
 			} else if (menuNo == 0) {
