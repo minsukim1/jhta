@@ -1,0 +1,5 @@
+package collection.recruit.vo;
+
+public class RecruitmentRepository {
+
+}

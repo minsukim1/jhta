@@ -1,0 +1,13 @@
+package date1;
+
+import java.util.Calendar;
+
+public class CalendarDemo2 {
+
+	public static void main(String[] args) {
+		// 특정날짜의 캘린더 객체 만들기
+		Calendar date1 = Calendar.getInstance();
+		// 2019년 4월 11일
+		date1.set(2019, 3, 11);
+	}
+}

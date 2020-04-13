@@ -1,0 +1,18 @@
+package map;
+
+public class HashMapDemo2 {
+
+	public static void main(String[] args) {
+		
+		// 고객등급(bronze, silver, gold)에 따라서 각각
+		
+		String grade = "silver";
+		int orderPrice = 34000;
+		
+		int point = 0;
+		if(grade.equals("bronze")) {
+			point = (int) (orderPrice*0.01);
+		}
+		
+	}
+}

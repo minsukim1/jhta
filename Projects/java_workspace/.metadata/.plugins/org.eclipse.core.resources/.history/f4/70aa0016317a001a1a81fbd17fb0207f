@@ -1,0 +1,7 @@
+package data.vo;
+
+public class Data {
+	private String day;
+	private String dayOfWeek;
+	private int death;
+}

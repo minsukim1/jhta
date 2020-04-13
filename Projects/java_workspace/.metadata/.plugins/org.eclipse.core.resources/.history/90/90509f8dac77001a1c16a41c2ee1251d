@@ -1,0 +1,11 @@
+package date1;
+
+import java.util.Calendar;
+
+public class CalendarDemo1 {
+
+	public static void main(String[] args) {
+		Calendar cal = Calendar.getInstance();
+		System.out.println(cal);
+	}
+}

@@ -1,0 +1,22 @@
+package characterstream;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class ReaderDemo1 {
+
+	public static void main(String[] args) throws IOException {
+		FileReader fr = new FileReader("c:/files/data.txt");
+		BufferedReader br = new BufferedReader(fr); // 텍스트파일을 읽어올떄 무조건리더
+
+		String text = null;
+		while ((text = br.readLine()) != null) {
+			if(!text.isEmpty()) {
+				System.out.println(text);
+			}
+		}
+
+		br.close();
+	}
+}

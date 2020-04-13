@@ -1,0 +1,14 @@
+package demo1;
+
+public class BoxForSmartPhone<T extends SmartPhone> {
+	private T t;
+	
+	public void add(T t) {
+		this.t = t;
+	}
+	
+	public T get() {
+		return t;
+	}
+
+}

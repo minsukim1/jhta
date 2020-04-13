@@ -1,0 +1,9 @@
+package collection.recruit.vo;
+
+public class Resume {
+	
+	private String name;	// 구직자 이름
+	private String tel;		// 전화번호
+	private String dept;	// 지원부서
+	
+}

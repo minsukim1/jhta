@@ -1,0 +1,10 @@
+package sort;
+
+import java.util.ArrayList;
+
+public class SortDemo5 {
+
+	public static void main(String[] args) {
+		ArrayList<Score> list = new ArrayList<Score>();
+	}
+}

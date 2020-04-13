@@ -1,0 +1,12 @@
+package number1;
+
+public class NumberFormatDemo {
+
+	public static void main(String[] args) {
+		
+		double number = 1234567.89;
+		
+		// DecimalFormat
+		// 숫자를 지정된 형식의 텍스트로 변환한다.
+	}
+}

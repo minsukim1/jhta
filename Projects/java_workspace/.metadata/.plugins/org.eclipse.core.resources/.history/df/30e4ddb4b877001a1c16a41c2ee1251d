@@ -1,0 +1,9 @@
+package number1;
+
+public class IntegerDemo {
+
+	public static void main(String[] args) {
+		
+		String text = "1234567.89";
+	}
+}

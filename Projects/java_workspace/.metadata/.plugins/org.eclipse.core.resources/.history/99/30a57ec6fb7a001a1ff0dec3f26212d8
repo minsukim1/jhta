@@ -1,0 +1,14 @@
+package serialization;
+
+public class SerializationDemo {
+	
+	public static void main(String[] args) {
+		
+		User user = new User();
+		user.setNo(100);
+		user.setUserId("hong");
+		user.setPassword("zxcv1234");
+		user.setTel("010-2345-6575");
+		
+	}
+}

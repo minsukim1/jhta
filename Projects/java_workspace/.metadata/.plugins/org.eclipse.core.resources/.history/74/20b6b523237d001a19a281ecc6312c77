@@ -1,0 +1,10 @@
+package demo1;
+
+public class BoxDemo3 {
+
+	public static void main(String[] args) {
+		
+		BoxForSmartPhone<Product> box1 = new BoxForSmartPhone<Product>();
+		
+	}
+}
