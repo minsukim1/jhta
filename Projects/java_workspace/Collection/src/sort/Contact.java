@@ -55,10 +55,10 @@ public class Contact implements Comparable<Contact> {
 	 *  		이 객체의 번호와 다른 객체의 번호가 같으면 0을 반환하자
 	 *  		이 객체의 번호가 다른 객체의 번호보다 작으면 0보다 작은 값을 반환하자
 	 */
-	//	@Override
-	//	public int compareTo(Contact other) {
-	//		return this.no - other.no;
-	//	}
+		@Override
+		public int compareTo(Contact other) {
+			return this.no - other.no;
+		}
 	
 	/*
 	 *  이 객체와 다른 Contact를 비교하는 메소드를 재정의한다.
@@ -69,9 +69,9 @@ public class Contact implements Comparable<Contact> {
 	 *  	String에 구현된 compareTo(String o)를 사용해서 
 	 *  	이 객체의 이름과 다른 Contact 객체의 이름을 비교하면 된다.
 	 */
-	@Override
-		public int compareTo(Contact other) {
-			return this.name.compareTo(other.name);
-		}
+//	@Override
+//		public int compareTo(Contact other) {
+//			return this.name.compareTo(other.name);
+//		}
 	
 }

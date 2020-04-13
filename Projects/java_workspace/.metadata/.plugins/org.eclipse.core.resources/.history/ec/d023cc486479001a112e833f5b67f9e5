@@ -1,0 +1,21 @@
+package etc;
+
+import java.util.Scanner;
+
+public class PropertiesDemo2 {
+
+	public static void main(String[] args) {
+		Scanner scanner =new Scanner(System.in);
+		
+		System.out.println("환경설정 파일 설정 프로그램");
+		
+		System.out.print("서버URL을 입력하세요 : ");
+		String url = scanner.next();
+		System.out.print("서버의 포트번호를 입력하세요 : ");
+		String port = scanner.next();
+		System.out.print("서버의 접속계정을 입력하세요 : ");
+		String username = scanner.next();
+		System.out.print("서버의 접속 비밀번호를 입력하세요 : ");
+		String password = scanner.next();
+	}
+}

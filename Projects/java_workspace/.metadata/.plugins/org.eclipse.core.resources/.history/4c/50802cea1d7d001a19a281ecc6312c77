@@ -1,0 +1,13 @@
+package demo1;
+
+public class BoxDemo {
+
+	public static void main(String[] args) {
+		
+		Box<String> box1 = new Box<String> ();
+		box1.add("안녕하세요");
+		
+		Box<Product> box2 = new Box<Product>();
+		box2.add(new Product());
+	}
+}

@@ -49,55 +49,62 @@ public class BankingService {
 	
 	// 계좌번호에 해당하는 계좌정보를 조회(출력)하는 서비스
 	void printBankingByNo(String bankingNo) {
-		boolean isFound = false;
-		for(int i =0; i<savePosition; i++) {
-			Banking banking = db[i];
-			if(banking.no.equals(bankingNo)) {
-				banking.display();
-				isFound = true;
-			} 
-		}
-		if(!isFound) {
+		Banking banking = findBankingByNo(bankingNo);
+		
+		if(banking !=null) {
+			banking.display();
+		} else {
 			System.out.println("일치하는 계좌가 없습니다.");
 		}
 
 	}
 	// 계좌번호, 입금액을 전달받아서 해당계좌에 입금하는서비스
 	void depositToBank (String bankingNo, long money) {
-		boolean isFound = false;
-		for(int i =0; i<savePosition; i++) {
-			Banking banking = db[i];
-			if(banking.no.equals(bankingNo)) {
-				banking.deposit(money);
-				isFound = true;
-			}
-		}
-		if(!isFound) {
-			System.out.println("일치하는 계좌가 없습니다.");
+		Banking banking =findBankingByNo(bankingNo);
+		if(banking!=null) {
+			banking.deposit(money);
+		} else {
+			System.out.println("no계좌");
 		}
 	}
 	
 	// 계좌번호, 비밀번호, 출금액을 전달받아서 출금액만큼 반환하는 서비스
 	long withdrawFromBanking(String bankingNo, int pwd, long money) {
-		for(int i =0; i<savePosition; i++) {
-			Banking banking = db[i];
-			if(banking.no.equals(bankingNo)) {
-				banking.withdraw(money, pwd);
-			}
+		long result = 0L;
+		Banking banking = findBankingByNo(bankingNo);
+		if(banking!=null) {
+			result = banking.withdraw(money, pwd);
+		} else {
+			System.out.println("no계좌");
 		}
-		return money;
+		return result;
 	}
 	
 	// 계좌번호, 비밀번호를 전달받아서 계좌를 해지하고, 해지금액 전체를 반환하는 서비스
 	long closeBanking(String bankingNo, int pwd) {
-		long money = 0L;
+		long result = 0L;
+		Banking banking = findBankingByNo(bankingNo);
+		if(banking!=null) {
+			result = banking.close(pwd);
+		} else {
+			System.out.println("no계좌");
+		}
+		return result;
+	}
+	
+	// 서비스에서 자주 사용되는 계좌번호에 해당하는 계좌정보를 찾아서 반환하는 기능
+	Banking findBankingByNo(String bankingNo) {
+		Banking result = null;
+		
 		for(int i =0; i<savePosition; i++) {
 			Banking banking = db[i];
-			if(banking.no.equals(bankingNo)) {
-				money = banking.close(pwd);
+			if(bankingNo.equals(banking.no)) {
+				result = banking;
+				break;
 			}
 		}
-		return money;
+		
+		return result;
 	}
 	
 	

@@ -1,0 +1,11 @@
+package data.repo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import data.vo.Data;
+
+public class DataRepo {
+
+	private List<Data> db = new ArrayList<Data>();
+}

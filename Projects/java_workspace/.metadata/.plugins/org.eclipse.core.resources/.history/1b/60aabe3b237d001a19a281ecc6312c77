@@ -1,0 +1,14 @@
+package demo1;
+
+public class BoxDemo3 {
+
+	public static void main(String[] args) {
+		
+		BoxForSmartPhone<Product> box1 = new BoxForSmartPhone<Product>();
+		BoxForSmartPhone<Tv> box2 = new BoxForSmartPhone<Tv>();
+		BoxForSmartPhone<SmartPhone> box3 = new BoxForSmartPhone<SmartPhone>();
+		BoxForSmartPhone<Galaxy> box4 = new BoxForSmartPhone<Galaxy>();
+		BoxForSmartPhone<Iphone> box5 = new BoxForSmartPhone<Iphone>();
+		
+	}
+}

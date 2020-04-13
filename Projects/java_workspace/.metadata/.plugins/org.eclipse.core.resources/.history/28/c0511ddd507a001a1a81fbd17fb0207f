@@ -1,0 +1,15 @@
+package data.vo;
+
+public class cccc {
+
+	public static void main(String[] args) {
+		
+	}
+}
+
+class Solution {
+	public boolean solution(String s) {
+		boolean answer = true;
+		return answer;
+	}
+}

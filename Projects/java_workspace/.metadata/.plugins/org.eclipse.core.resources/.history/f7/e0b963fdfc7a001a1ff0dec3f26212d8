@@ -1,0 +1,14 @@
+package serialization;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.ObjectInputStream;
+
+public class DeserializationDemo {
+
+	public static void main(String[] args) throws FileNotFoundException{
+		
+		FileInputStream fis = new FileInputStream("c:/files/user.sav");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+	}
+}

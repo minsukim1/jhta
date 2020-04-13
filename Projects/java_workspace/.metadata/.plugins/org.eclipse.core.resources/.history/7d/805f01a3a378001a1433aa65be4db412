@@ -1,0 +1,12 @@
+package collection.recruit.vo;
+
+import java.util.ArrayList;
+
+import collection.recruit.vo.Recruitment;
+
+public class RecruitmentRepository {
+
+	private ArrayList<Recruitment> db = new ArrayList<Recruitment>();
+	private int sequence = 100;
+	
+}

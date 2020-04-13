@@ -1,0 +1,10 @@
+package bytestream;
+
+import java.io.IOException;
+
+public class FileCopyDemo7 {
+
+	public static void main(String[] args) throws IOException {
+		
+	}
+}

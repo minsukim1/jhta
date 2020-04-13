@@ -52,38 +52,26 @@ public class OrderDemo1 {
 				System.out.println("[고객 검색]");
 				System.out.print("검색조건을 입력하세요(N,G) : ");
 				String search = scanner.next();
-				Order foundOrder = null;
-				if(search.equals("N")) {
-					System.out.print("키워드를 입력하세요 : ");
-					String name = scanner.next();
-					for(int i=0; i<savePosition; i++) {
-						Order order = orders[i];
-						if(name.equals(order.name)) {
-							foundOrder = order;
-							break;
-						}
+				System.out.print("키워드를 입력하세요 : ");
+				String name = scanner.next();
+				System.out.println("고객명	고객등급	총구매금액	적립포인트	사은품");
+				System.out.println("======================================");
+				for(int i =0; i<savePosition; i++) {
+					Order order = orders[i];
+					
+					boolean isFound = false;
+					if(search.equals("N") && name.equals(order.name)) {
+						isFound = true;
+					} else if (search.equals("G") && name.equals(order.gift)) {
+						isFound = true;
 					}
-				}else if(search.equals("G")) {
-					System.out.print("키워드를 입력하세요 : ");
-					String grade = scanner.next();
-					for(int i=0; i<savePosition; i++) {
-						Order order = orders[i];
-						if(grade.equals(order.grade)) {
-							foundOrder = order;
-							break;
-						}
+					if(isFound) {
+						System.out.print(order.name+"\t");
+						System.out.print(order.grade+"\t");
+						System.out.print(order.price+"\t");
+						System.out.print(order.point+"\t");
+						System.out.println(order.gift);
 					}
-				}
-				if(foundOrder!=null) {
-					System.out.println("=========출력 결과==========");
-					System.out.println("고   객   명 : "+foundOrder.name);
-					System.out.println("고 객 등 급 : "+foundOrder.grade);
-					System.out.println("총구매금액 : "+foundOrder.price);
-					System.out.println("적립포인트 : "+foundOrder.point);
-					System.out.println("사   은   품 : "+foundOrder.gift);
-					System.out.println("=========================");
-				}else {
-					System.out.println("일치하는 정보를 찾을수 없습니다.");
 				}
 			}else if(menuNo ==3) {
 				System.out.print("고객명을 입력하세요 : ");
@@ -121,6 +109,7 @@ public class OrderDemo1 {
 				break;
 			}
 		}
+		scanner.close();
 	}
 	
 }

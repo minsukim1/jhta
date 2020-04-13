@@ -72,5 +72,6 @@ public class BankingDemo3 {
 				
 			}
 		}
+		scanner.close();
 	}
 }
