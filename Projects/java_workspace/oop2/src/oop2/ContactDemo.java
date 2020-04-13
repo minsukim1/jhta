@@ -8,7 +8,8 @@ public class ContactDemo {
 		Contact c2 = new Contact("김유신", "010-4444-3232", "kimys@naver.com");
 		Contact c3 = new Contact("강감찬", "010-1212-4545", "kanggc@naver.com");
 		
-		System.out.println(c1);
+		String str = c1.name;
+		System.out.println(str);
 		System.out.println(c2);
 		System.out.println(c3);
 	}

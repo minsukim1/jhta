@@ -1,6 +1,5 @@
 package array;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class ArrayDemo11 {
@@ -23,8 +22,14 @@ public class ArrayDemo11 {
 			numbers2[i]=sum;
 			sum = 0;
 		}
-		System.out.print(Arrays.toString(numbers));
-		System.out.print(" -----> ");
-		System.out.print(Arrays.toString(numbers2));
+		System.out.print("[");
+		for(int i =0; i<numbers.length; i++) {
+			System.out.print(numbers[i]+" ");
+		}
+		System.out.print("] ---> [");
+		for (int i=0; i<numbers2.length; i++) {
+			System.out.print(numbers2[i]+" ");
+		}
+		System.out.print("]");
 	}
 }

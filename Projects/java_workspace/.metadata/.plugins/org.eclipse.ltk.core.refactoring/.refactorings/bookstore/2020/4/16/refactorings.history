@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Move 3 packages to &apos;toyprojects/bookstore&apos;&#x0D;&#x0A;- Original project: &apos;bookstore&apos;&#x0D;&#x0A;- Destination element: &apos;toyprojects/bookstore&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     bookstore/src/com.sample.bookstore&#x0D;&#x0A;     bookstore/src/com.sample.bookstore.vo&#x0D;&#x0A;     bookstore/src/com.sample.bookstore.service&#x0D;&#x0A;- Update references to refactored element" description="Move packages" destination="=toyprojects/bookstore" element1="/src&lt;com.sample.bookstore" element2="/src&lt;com.sample.bookstore.vo" element3="/src&lt;com.sample.bookstore.service" flags="589830" fragments="3" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.movePackages" stamp="1586741812205" version="1.0"/>
-</session>

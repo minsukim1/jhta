@@ -30,16 +30,18 @@ public class ProductService {
 	// 상품명과 입고량을 전달받아서 이미 배열에 저장된 상품의 재고량을 증가시킨다.
 	void addProductStock(String name, int amount) {
 		Product foundStock = null;
-		Product product = findProductByNo(name);
-		if(product!=null) {
-			if(product.stock == 0) {
-				product.isSoldOut = false;
-				product.stock += amount;
-				foundStock= product;
-			} else {
-				product.stock += amount;
-				foundStock= product;
-			}
+		for(int i =0; i<position; i++) {
+			Product product = db[i];
+			if(name.equals(product.name)) {
+				if(product.stock == 0) {
+					product.isSoldOut = false;
+					product.stock += amount;
+					foundStock= product;
+				} else {
+					product.stock += amount;
+					foundStock= product;
+				}
+			} 	
 		}
 		if(foundStock!=null) {
 			System.out.println("재고가 증가됐습니다 :" + foundStock.stock);
@@ -52,31 +54,33 @@ public class ProductService {
 	// 단, 재고량이 0이 되면 해당상품의 절판여부를 true로 설정한다.
 	void exportProduct(String name, int amount) {
 		Product foundStock = null;
-		Product product = findProductByNo(name);
-		if(product!=null) {
-			if(product.stock>amount) {
-				product.stock -=amount;
-				foundStock = product;
-			} else if (product.stock == amount) {
-				product.stock = 0;
-				product.isSoldOut = true;
-				foundStock = product;
-			} else if (product.stock<amount) {
-				System.out.println("재고량 보다 더 많습니다!");
-				foundStock = product;
+		for(int i =0; i<position; i++) {
+			Product product = db[i];
+			if(name.equals(product.name)) {
+				if(product.stock>amount) {
+					product.stock -=amount;
+					foundStock = product;
+				} else if (product.stock == amount) {
+					product.stock = 0;
+					product.isSoldOut = true;
+					foundStock = product;
+				} else if (product.stock<amount) {
+					System.out.println("재고량 보다 더 많습니다!");
+					foundStock = product;
+				}
 			}
-		} 
+		}
 		if(foundStock==null) {
 			System.out.println("그런 이름의 상품명은 없습니다.");
 		}
 	}
 	// 상품명을 전달받아서 배열에서 상품명이 일치하는 상품정보를 출략한다.
 	void printProductsByName(String name) {
-		Product product = findProductByNo(name);
-		if(product!=null) {
-			product.display();
-		} else {
-			System.out.println("일치하는 상품명이 없습니다.");
+		for(int i =0; i<position; i++) {
+			Product product = db[i];
+			if(name.equals(product.name)) {
+				product.display();
+			}
 		}
 	}
 	// 제조사명을 전달받아서 배열에서 제조사명이 일치하는 상품정보를 출력한다
@@ -107,17 +111,5 @@ public class ProductService {
 			
 		}
 		
-	}
-	Product findProductByNo(String name) {
-		Product result = null;
-		
-		for(int i =0; i<position; i++) {
-			Product product = db[i];
-			if(name.equals(product.name)) {
-				result = product;
-				break;
-			}
-		}
-		return result;
 	}
 }

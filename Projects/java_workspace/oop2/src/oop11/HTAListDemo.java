@@ -14,32 +14,20 @@ public class HTAListDemo {
 		
 		// 값 꺼내기
 		HTAIterator hta = list.iterator();
-		boolean hasValue1 = hta.hasNext();
 		String value1 = hta.next();
-		System.out.println(hasValue1 + ", "+ value1);
-		
-		boolean hasValue2 = hta.hasNext();
+		boolean hasValue1 = hta.hasNext();
+		System.out.println(value1 + ", "+ hasValue1);
 		String value2 = hta.next();
-		System.out.println(hasValue2 + ", "+ value2);
-		
-		boolean hasValue3 = hta.hasNext();	
+		boolean hasValue2 = hta.hasNext();
+		System.out.println(value2 + ", "+ hasValue2);
 		String value3 = hta.next();
-		System.out.println(hasValue3 + ", "+ value3);
-
-		boolean hasValue4 = hta.hasNext();
+		boolean hasValue3 = hta.hasNext();
+		System.out.println(value3 + ", "+ hasValue3);
 		String value4 = hta.next();
-		System.out.println(hasValue4 + ", "+ value4);
-
-		boolean hasValue5 = hta.hasNext();
+		boolean hasValue4 = hta.hasNext();
+		System.out.println(value4 + ", "+ hasValue4);
 		String value5 = hta.next();
-		System.out.println(hasValue5 + ", "+ value5);
-		
-		boolean hasValue6 = hta.hasNext();
-		System.out.println(hasValue6);
-//		while(hta.hasNext()) {
-//			boolean hasValue = hta.hasNext();
-//			String value = hta.next();
-//			System.out.println(hasValue + ", "+ value);
-//		}
+		boolean hasValue5 = hta.hasNext();
+		System.out.println(value5 + ", "+ hasValue5);
 	}
 }
