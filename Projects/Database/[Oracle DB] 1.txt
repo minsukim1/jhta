@@ -1,0 +1,86 @@
+﻿오라클 설치
+	- hr 샘플 계정 활성화
+	    SQL> conn system/zxcv1234;    -- 시스템 권한으로 DBMS에 접속
+	    SQL> alter user hr account unlock;	-- hr 계정의 잠금 해제
+	    SQL> alter user hr identified by zxcv1234; -- hr 계정의 비밀번호 설정
+	    SQL> conn hr/zxcv1234;	  -- hr 계정으로 DBMS 접속
+
+엔티티
+- 1개이상의 속성을 가지고 있다
+
+테이블(2차원 표 형태)
+엔티티에 담겨져있는 주소들을 담으려는 것
+
+테이블 row = 행 가로  / columm = 열 세로
+
+
+INSERT -- 추가/생성
+SELECT -- 조회
+UPDATE -- 변경
+DELEATE -- 삭제
+
+CRUD -- Create / Retrieve / Update / Delete
+
+SQL
+	- Structured Query Language
+	- 구조화된 질의 언어
+	- DBMS의 데이터에 엑세스하는 명령어다.
+	- 종류
+		SELECT : 데이터 조회
+		DML (Data Manipulation Language)
+			INSERT, UPDATE, DATE, MERGE
+		DDL (Data Definition Language)
+			CREATE, DROP, ALTER, RENAME, TRUNCATE
+		DCL (Data Control Language)
+			COMMIT, ROLLBACK, SAVEPOINT
+
+select문
+	- 테이블의 데이터를 조회하는 명령문이다.
+	- 조회 기능
+		- 프로젝션 : 조회결과로 반환되는 열(컬럼)을 사용자가 선택할 수 있다.
+		- 선택 : 조회결과로 반환되는 행을 다양한 조건으로 제한할 수 있다.
+		- 조인 : 두 개 이상의 테이블을 연결해서 각 테이블에 저장된 데이터를 한 번에 가져올 수 있다.
+	
+	- 가장 기본적인 조회 기능
+		- 테이블의 모든 행과 모든 열을 조회하기
+			SELECT * 
+			FROM   테이블명;
+
+		- 테이블에서 특정 컬럼을 선택해서 조회하기
+			SELECT 컬럼명,컬럼명,컬럼명, ... 
+			FROM   테이블명;
+
+		- 산술연산자(+,-,*,/) 사용하기
+			SELECT  컬럼명 + 10, 컬럼명 + 컬럼명, (컬럼명*2)+컬럼명, ...
+			FROM	테이블명;
+			* 산술연산자를 사용하는 산술식에 NULL값이 포함되어 있으면
+			  연산결과는 항상 NULL이다.
+			* 오라클에서 NULL은 값이 결정되지 않았다는 의미다.
+		- 별칭(Alias) 정의하기
+			* 컬럼명의 이름을 변경한다. (단, 테이블의 컬럼명이 변경되는 것은 아니다).
+			* 계산식이 포함된 컬럼에 적절한 이름을 붙일 때 유용하다.
+			* 별칭은 컬럼명 바로 뒤에 적는다. 컬럼명과 별칭 사이에 as 키워드를 사용할 수 있다.
+			* 별칭에 특수문자, 공백이 포함되는 경우 ""를 사용해야 한다.
+			SELECT 컬럼명 별칭, 컬럼명 AS 별칭, ...
+			FROM   테이블명
+		- 중복행없이 조회하기
+			SELECT DISTINCT 컬럼명, 컬럼명, ...
+			FROM 테이블명
+			* DISTINCT 키워드는 제시된 컬럼의 값이 동일한 행은 한번만 조회한다.
+	- 선택되는 행의 제한
+		SELECT 컬럼명, 컬럼명, 컬럼명, ...
+		FROM   테이블명
+		WHERE  조건식;
+		* 조건식의 연산결과가 true로 판정되는 행만 선택된다.
+		* 비교 연산자
+			=	같다
+			>	크다
+			>=	크거나 같다
+			<	작다
+			<=	작거나 같다
+			<>	같지않다
+			!=	같지않다
+		* 조건식
+			where 컬럼명 비교연산자 값
+			where 연산식 비교연산자 값
+			where 연산식 비교연산자 연산식
