@@ -1,0 +1,156 @@
+﻿오라클 설치
+	- hr 샘플 계정 활성화
+	    SQL> conn system/zxcv1234;    -- 시스템 권한으로 DBMS에 접속
+	    SQL> alter user hr account unlock;	-- hr 계정의 잠금 해제
+	    SQL> alter user hr identified by zxcv1234; -- hr 계정의 비밀번호 설정
+	    SQL> conn hr/zxcv1234;	  -- hr 계정으로 DBMS 접속
+
+엔티티
+- 1개이상의 속성을 가지고 있다
+
+테이블(2차원 표 형태)
+엔티티에 담겨져있는 주소들을 담으려는 것
+
+테이블 row = 행 가로  / columm = 열 세로
+
+
+INSERT -- 추가/생성
+SELECT -- 조회
+UPDATE -- 변경
+DELEATE -- 삭제
+
+CRUD -- Create / Retrieve / Update / Delete
+
+SQL
+	- Structured Query Language
+	- 구조화된 질의 언어
+	- DBMS의 데이터에 엑세스하는 명령어다.
+	- 종류
+		SELECT : 데이터 조회
+		DML (Data Manipulation Language)
+			INSERT, UPDATE, DATE, MERGE
+		DDL (Data Definition Language)
+			CREATE, DROP, ALTER, RENAME, TRUNCATE
+		DCL (Data Control Language)
+			COMMIT, ROLLBACK, SAVEPOINT
+
+select문
+	- 테이블의 데이터를 조회하는 명령문이다.
+	- 조회 기능
+		- 프로젝션 : 조회결과로 반환되는 열(컬럼)을 사용자가 선택할 수 있다.
+		- 선택 : 조회결과로 반환되는 행을 다양한 조건으로 제한할 수 있다.
+		- 조인 : 두 개 이상의 테이블을 연결해서 각 테이블에 저장된 데이터를 한 번에 가져올 수 있다.
+	
+	- 가장 기본적인 조회 기능
+		- 테이블의 모든 행과 모든 열을 조회하기
+			SELECT * 
+			FROM   테이블명;
+
+		- 테이블에서 특정 컬럼을 선택해서 조회하기
+			SELECT 컬럼명,컬럼명,컬럼명, ... 
+			FROM   테이블명;
+
+		- 산술연산자(+,-,*,/) 사용하기
+			SELECT  컬럼명 + 10, 컬럼명 + 컬럼명, (컬럼명*2)+컬럼명, ...
+			FROM	테이블명;
+			* 산술연산자를 사용하는 산술식에 NULL값이 포함되어 있으면
+			  연산결과는 항상 NULL이다.
+			* 오라클에서 NULL은 값이 결정되지 않았다는 의미다.
+		- 별칭(Alias) 정의하기
+			* 컬럼명의 이름을 변경한다. (단, 테이블의 컬럼명이 변경되는 것은 아니다).
+			* 계산식이 포함된 컬럼에 적절한 이름을 붙일 때 유용하다.
+			* 별칭은 컬럼명 바로 뒤에 적는다. 컬럼명과 별칭 사이에 as 키워드를 사용할 수 있다.
+			* 별칭에 특수문자, 공백이 포함되는 경우 ""를 사용해야 한다.
+			SELECT 컬럼명 별칭, 컬럼명 AS 별칭, ...
+			FROM   테이블명
+		- 중복행없이 조회하기
+			SELECT DISTINCT 컬럼명, 컬럼명, ...
+			FROM 테이블명
+			* DISTINCT 키워드는 제시된 컬럼의 값이 동일한 행은 한번만 조회한다.
+	- 선택되는 행의 제한
+		SELECT 컬럼명, 컬럼명, 컬럼명, ...
+		FROM   테이블명
+		WHERE  조건식;
+		* 조건식의 연산결과가 true로 판정되는 행만 선택된다.
+		* 비교 연산자
+			=				같다
+			>				크다
+			>=				크거나 같다
+			<				작다
+			<=				작거나 같다
+			<>				같지않다
+			!=				같지않다
+			between 하한값 and 상항값	값의 범위에 포함(하한값, 상한값도 포함)
+			in (값1, 값2, 값3, ...)		제시된 값들 중에서 하나라도 일치한 것
+			like 문자패턴			문자패턴과 일치하는 것
+			is null				null값인 것
+			is not null			null값이 아닌 것
+		* 조건식
+			where 컬럼명 비교연산자 값
+			where 연산식 비교연산자 값
+			where 연산식 비교연산자 연산식
+			작성예)
+				where salary > 6000;
+				where department_id = 70;
+				where salary*12 > 50000;
+				where manager_id is not null;
+				where department_id in (10, 20)
+				where job_id in ('AD_PRES', 'AD_VP');
+		* 논리 연산자
+			and	조건식의 모든 조건이 true일 때 true를 반환한다.
+			or	조건식의 조건 중 하나라도 true일 때 true를 반환한다.
+			not	조건식의 연산결과를 반전시킨다.
+		* 논리 연산자가 포함된 조건식
+			where 컬럼명 비교연산자 값 and 컬럼명 비교연산자 조건식
+			작성예)
+				where department_id = 60 and salary >= 5000;
+				where department_id = 50 and job_id like '%MAN';
+				where salary >= 10000 and salary <= 20000;
+				where department_id in (50,60,70) and salary > 15000;
+	- 정렬하기
+		* ORDER BY 절을 사용하면 행을 정렬할 수 있다.
+		* ORDER BY 절은 SELECT문의 가장 끝에 위치한다.
+		* ORDER BY 절에서는 정렬조건으로 컬럼명, 연산식, 별칭, 컬럼의 순번을 지정할 수 있다.
+			SELECT 컬럼명, 컬럼명, 컬럼명
+			FROM 테이블명
+			[WHERE 조건식]
+			[ORDER BY 정렬조건 ASC|DESC]
+- 오라클 내장함수
+	- 단일행 함수
+		- 행 당 하나의 결과를 반환한다.
+		- 조회된 각 행에 대해서 함수가 실행된다.
+		- 중첩해서 사용할 수 있다.
+		- 종류
+			문자함수
+				LOWER(표현식)
+					소문자로 변환 후 반환한다.
+				UPPER(표현식)
+					대문자로 변환 후 반환한다.
+				LENGTH(표현식)
+					문자의 길이를 반환한다.
+				CONCAT(표현식1, 표현식2)
+					문자를 이어붙여서 반환한다.
+				SUBSTR(표현식, 시작위치)
+					시작위치에서 끝까지 잘라낸 문자를 반환한다.
+				SUBSTR(표현식, 시작위치, 길이)
+					시작위치에서 지정된 길이만큼 잘라낸 문자를 반환한다.
+				INSTR(표현식, '문자')
+					지정된 문자가 등장하는 위치를 반환한다.(1부터 시작)
+				LPAD(표현식, 길이, '문자')
+					지정된 길이보다 짧으면 모자란 길이만큼 왼쪽에 붙인다.
+				RPAD(표현식, 길이, '문자')
+					지정된 길이보다 짧으면 모자란 길이만큼 오른쪽에 붙인다.
+				TRIM(표현식)
+					불필요한 공백을 제거한 후 반환한다.
+				REPLACE(표현식, '변경할 문자', '새문자')
+					문자를 찾아서 새문자로 바꾼 다음 반환한다.
+			숫자함수
+			날짜함수
+			변환함수
+			기타함수
+			* 표현식은 컬럼이름 혹은 연산식을 말한다.
+	- 다중행 함수
+		- 테이블의 모든 행, 또는 행 그룹에 적용되면, 각 그룹당 하나의 결과를 반환한다.
+		- 행 집합은 테이블 전체 또는 그룹화된 테이블이다.
+		- 합계, 평균, 최대값, 최소값, 분산, 표준편차 등을 구할 수 있다.
+	- 다중행 함수
