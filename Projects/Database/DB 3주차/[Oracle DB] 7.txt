@@ -1,0 +1,34 @@
+- 뷰의 생성 및 이용
+	- 뷰는 하나 이상의 테이블을 이용해서 만든 가상의 테이블이다.
+	- 물리적인 저장공간을 사용하지 않는다.	
+	- 목적
+		* 복잡한 SQL 구문을 쉽게 작성하기 위해
+		* 동일한 데이터로부터 다양한 결과를 얻기 위해
+		* 데이터의 엑세스를 제한하기 위해
+	- 뷰의 생성
+	  CREATE OR REPLACE VIEW 뷰이름
+	  AS SELECT 컬럼, 컬럼, 컬럼
+	     FROM 테이블면
+	     [WHERE 조건식]
+	     [GROUP BY 컬럼]
+	     [HAVING 조건식]
+	  예) 부서아이디와 부서별사원수를 포함하고 있는 가상의 테이블
+	      create or replace view dept_emp_count_view
+	      as select department_id, count(*)
+		 from employees
+		 where department_id is not null
+		 group by department_id;
+	     사원아이디, 이름, 급여, 급여등급을 포함하고있는 가상의 테이블
+	     create or replace view emp_salary_grade_view
+	     as select A.employee_id, A.first_name, A.salary, B.gra
+ 		from employees A, job_grades B
+  		where A.salary >= B.lowest_sal and A.salary <= B.highest_sal;
+- 인라인 뷰
+	- SQL문 안에서 정의된 뷰다.
+	- SELECT문의 FROM 절에 정의된 서브쿼리를 인라인 뷰라고 부른다.
+	- 인라인 뷰 작성하기
+	  SELECT 컬럼명, 컬럼명, ...
+	  FROM (SELECT 컬럼명, 컬럼명, ...
+		FROM 테이블명) A, 테이블명 B
+	  WHERE A.컬럼명 = B.컬럼명
+	  * FROM 절에 정의된 서브쿼리의 실행결과를 가상의 테이블로 취급한다.
