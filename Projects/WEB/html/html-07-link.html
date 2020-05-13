@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--
+    링크를 담는 태그(Anchor 태그)
+        * <a href=""></a>태그를 사용하면 Hyper Link를 정의할 수 있다.
+        * a태그의 구성
+        <a href="" target "" title"">화면에 표시되는 텍스트</a>
+        * href
+            - 연결된 문서의 주소(경로)를 정의한다.
+            - 필수 속성
+                외부사이트 : http://주소
+                프로젝트문서 : 경로/파일명
+                같은 문서내 특정위치 : #아이디
+                상위폴더 : ../
+        * target
+            - 연결된 문서를 오픈할 위치를 정의한다.
+                _blank : 연결된  페이지를 새창이나 새탭에서 연다.
+                _self : 연결된 페이지를 지금 창에서 연다(기본값)
+            - 생략가능
+        * title
+            - 풍선도움말에 표시될 내용을 정의한다.
+    
+    -->
+    <h1>Hyper Links 연결하기</h1>
+    <h3>주요 포털사이트</h3>
+
+    <ul>
+        <li><a href="https://www.naver.com" title="네이버" target="_blank">네이버</a></li>
+        <li><a href="https://www.google.com" title="구글">구글</a></li>
+        <li><a href="https://www.daum.net" title="다음">다음</a></li>
+    </ul>
+
+    <h3>프로젝트 내 문서와 연결하기</h3>
+    <p>
+        <a href="html-01-doc.html">HTML의 문서구조</a>를 살펴보고,
+        먼저<a href="html-02-title.html">제목태그</a>를 사용해보자.
+        예제는<a href="sub/sample.html">샘플페이지</a>에서 확인하세요
+    </p>
+    
+    <h3>같은 문서의 특정 위치로 이동하기</h3>
+    <p>
+        <a href="#description">상세설명</a>
+        <a href="#review">리뷰</a>
+        <a href="#question">상품문의</a>
+    </p>
+    <h4 id="description">상품 상세설명</h4>
+    <p>
+        
+    </p>
+    <h4 id="review">상품 리뷰</h4>
+    <p>
+        
+    </p>
+    <h4 id="question">상품 문의</h4>
+    <p>
+        
+    </p>
+
+</body>
+
+</html>

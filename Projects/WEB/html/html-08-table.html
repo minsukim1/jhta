@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        table {width: 100%;}
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+        }
+        th {
+            text-align: left;
+            color: white;
+        }
+        tr:nth-child(even){
+            background-color: #dddddd;
+        }
+        thead tr {
+            background-color: #666666;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        <table></table>태그는 표를 정의한다.
+        <table> 태그는 <thead>, <tbody>, <tfoot>을 자식태그로 가진다.
+        <table>,<thead>,<tbody>,<tfoot> 태그는 <tr>을 자식태그로 가진다.
+        <tr> 태그는 <th>, <td> 태그를 자식태그로 가진다.
+        <th>, <td> 태그는 컨텐츠를 담는다.
+        table : 표
+        thead : 윗부분
+        tfoot : 본문
+        tfoot : 아랫부분
+        tr : 행
+        th : 제목
+        td :  데이터
+    -->
+    
+    <h1>표</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>전화번호</th>
+                <th>이메일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>홍길동</td>
+                <td>010-1234-5678</td>
+                <td>hong@gmail.com</td>
+            </tr>
+            
+             <tr>
+                <td>홍길동</td>
+                <td>010-1234-5678</td>
+                <td>hong@gmail.com</td>
+            </tr>
+            
+             <tr>
+                <td>홍길동</td>
+                <td>010-1234-5678</td>
+                <td>hong@gmail.com</td>
+            </tr>
+            
+             <tr>
+                <td>홍길동</td>
+                <td>010-1234-5678</td>
+                <td>hong@gmail.com</td>
+            </tr>
+            
+             <tr>
+                <td>홍길동</td>
+                <td>010-1234-5678</td>
+                <td>hong@gmail.com</td>
+            </tr>
+            
+             <tr>
+                <td>홍길동</td>
+                <td>010-1234-5678</td>
+                <td>hong@gmail.com</td>
+            </tr>
+            
+             <tr>
+                <td>홍길동</td>
+                <td>010-1234-5678</td>
+                <td>hong@gmail.com</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
