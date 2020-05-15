@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            margin: 10px;
+            border: 1px solid red;
+        }
+        
+        #footer {
+            background-color: black;
+            color: white;
+            font-size: 30px;
+        }
+        
+        #contents {
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        엘리먼트 id속성과 class 속성
+            * id와 class는 모든 엘리먼트가 가지는 공통 특성이다.
+            * id 속성
+                - 형식
+                <tag id="값">컨텐츠</tag>
+                - 특정 엘리먼트를 식별하기 위한 용도로 사용된다.
+                - HTML문서 전체에서 동일한 id속성값을 가지는 엘리먼트가 없어야 한다.
+                - id속성의 값에는 특수문자를 사용할 수 없다. (_ , - 제외)
+            * class 속성
+                - 형식
+                <tag class="값1 값2 값3...">컨텐츠</tag>
+                - 엘리먼트에 스타일을 적용하기 위한 용도로 사용된다.
+                - 미리 퍼플리셔가 다양한 스타일을 .식별자 {스타일}
+                  의 형태로 정의해 놓는다
+                - 해당 스타일을 적용하고 싶은 엘리먼트에 class="식별자"
+                  를 지정하면 미리 정의된 스타일이 적용되게 된다.
+    -->
+    <div>
+        <div>
+            헤더부
+        </div>
+        <div id="contents">
+            바디부
+        </div>
+        <div id="footer">
+            footer부
+        </div>
+    </div>
+</body>
+</html>
