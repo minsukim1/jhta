@@ -16,6 +16,7 @@
 				String position = "book";
 				BookDao bookDao = new BookDao();
 				int bookNo = Integer.parseInt(request.getParameter("bookno"));
+				String userId = request.getParameter("userid");
 				BookDetailDto bookDetailDto = bookDao.getBookByNo(bookNo);
 			%>
 			<%@ include file="../common/navibar.jsp"%>
@@ -27,8 +28,8 @@
 			<p>아래의 책에 대한 리뷰를 작성해 주세요.</p>
 			<div class="well">
 				<form action="register.jsp" method="post">
-					<input type="hidden" name="userid" value="유저아이디" /> <input
-						type="hidden" name="bookno" value="책번호" />
+					<input type="hidden" name="userid" value="<%=userId %>" /> <input
+						type="hidden" name="bookno" value="<%=bookNo %>" />
 					<div class="form-group">
 						<label>제목</label>
 						<div>

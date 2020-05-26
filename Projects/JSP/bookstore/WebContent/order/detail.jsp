@@ -34,10 +34,8 @@
 			%>
 		</div>
 		<div class="body">
-			<h3>
-				<%=user.getName()%>님의 주문내역입니다.
-				<strong>잔여포인트 : <%=user.getPoint() %></strong>
-			</h3>
+			<h3><%=user.getName()%>님의 주문내역입니다.</h3>
+			<p><strong>잔여포인트 : <%=user.getPoint() %></strong></p>	
 			
 			<table class="table">
 				<thead>
