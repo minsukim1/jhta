@@ -1,3 +1,4 @@
+<%@page import="com.bookstore.util.StringUtil"%>
 <%@page import="com.bookstore.dto.ReviewDto"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bookstore.dao.ReviewDao"%>
@@ -5,7 +6,7 @@
 <%@page import="com.bookstore.dto.BookDetailDto"%>
 <%@page import="com.bookstore.dao.BookDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,14 +105,14 @@
 					%>
 						<tr>
 							<th>작성자</th>
-							<td><%=reviewDto.getUserId() %></td>
+							<td><%=reviewDto.getUserName() %></td>
 							<th>평점</th>
 							<td><%=reviewDto.getPoint() %></td>
 							<th>작성일</th>
 							<td><%=reviewDto.getRegisteredDate() %></td>
 						</tr>
 						<tr>
-							<td colspan="6"><%=reviewDto.getContent() %></td>
+							<td colspan="6"><%=StringUtil.strWithBr(reviewDto.getContent()) %></td>
 						</tr>
 					<%
 							}
@@ -125,4 +126,7 @@
 	</div>
 </body>
 </html>
+
+
+
 

@@ -87,6 +87,7 @@
 					</tr>
 				</table>
 			</div>
+			<hr/>
 			<div class="well">
 				<form method="post" action="registerreply.jsp">
 					<div class="form-group">

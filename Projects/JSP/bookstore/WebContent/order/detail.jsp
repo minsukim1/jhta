@@ -30,7 +30,7 @@
 				UserDao userDao = new UserDao();
 				User user= userDao.getUserById(userId);
 				OrderDao orderDao = new OrderDao();
-				List<OrderDto> orders = orderDao.getOrderByUserId(userId);
+				List<OrderDto> orders = orderDao.getOrdersByUserId(userId);
 			%>
 		</div>
 		<div class="body">
@@ -60,7 +60,7 @@
 					
 				%>
 					<tr>
-						<td><%=order.getOrderNo() %></td>
+						<td><%=order.getNo() %></td>
 						<td><%=order.getBookTitle() %></td>
 						<td><%=NumberUtil.numberWithComma(order.getPrice()) %></td>
 						<td><%=order.getAmount() %></td>

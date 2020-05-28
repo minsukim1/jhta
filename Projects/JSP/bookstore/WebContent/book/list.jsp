@@ -1,3 +1,4 @@
+<%@page import="com.bookstore.util.NumberUtil"%>
 <%@page import="com.bookstore.vo.Book"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bookstore.dao.BookDao"%>
@@ -8,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Bookstore</title>
-<link rel="stylesheet" href="../css/bookstore.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../css/bookstore.css">
 </head>
 <body>
 	<div class="wrapper">
@@ -23,41 +24,42 @@
 		</div>
 		<div class="body">
 			<div>
+			<%
+				BookDao bookDao = new BookDao();
+				List<Book> books = bookDao.getAllBooks();
+			%>
 				<h3>도서 리스트</h3>
 				<table class="table">
 					<thead>
 						<tr>
-							<th>번호</th>
+							<th class="text-center">번호</th>
 							<th>제목</th>
 							<th>저자</th>
-							<th>가격</th>
-							<th>평점</th>
+							<th class="text-right">가격</th>
+							<th class="text-center">평점</th>
 							<th></th>
 						</tr>
-					</thead>	
+					</thead>
 					<tbody>
 					<%
-						BookDao bookDao = new BookDao();
-						List<Book> books= bookDao.getAllBooks();
 						for (Book book : books) {
-							
 					%>
 						<tr>
-							<td><%=book.getNo() %></td>
-							<td><a href="detail.jsp?bookno=<%=book.getNo()%>"><%=book.getTitle() %></a></td>
+							<td class="text-center"><%=book.getNo() %></td>
+							<td><a href="detail.jsp?bookno=<%=book.getNo() %>" ><%=book.getTitle() %></a></td>
 							<td><%=book.getWriter() %></td>
-							<td><%=book.getPrice() %></td>
-							<td><%=book.getPoint() %></td>
+							<td class="text-right"><%=NumberUtil.numberWithComma(book.getPrice()) %> 원</td>
+							<td class="text-center"><%=book.getPoint() %></td>
 							<td><a href="../order/form.jsp?bookno=<%=book.getNo() %>&amount=1">바로구매</a></td>
 						</tr>
 					<%
 						}
 					%>
-					</tbody>		
+					</tbody>
 				</table>
-				<hr />
+				<hr/>
 				<div class="text-right">
-					<a href="form.jsp"><strong>책 등록</strong></a>
+					<a href="form.jsp"><strong>[책 등록]</strong></a>
 				</div>
 			</div>
 		</div>
