@@ -5,6 +5,7 @@ import java.util.Date;
 public class Book {
 
 	private int no;
+
 	private String title;
 	private String writer;
 	private int price;
@@ -15,6 +16,15 @@ public class Book {
 	
 	public Book () {}
 
+	public Book(int no, String title, String writer, int price, int stock) {
+		super();
+		this.no = no;
+		this.title = title;
+		this.writer = writer;
+		this.price = price;
+		this.stock = stock;
+	}
+	
 	public int getNo() {
 		return no;
 	}
