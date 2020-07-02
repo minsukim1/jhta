@@ -1,12 +1,15 @@
-package com.simple.controller;
+package com.simple.controller.login;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class FormController implements Controller {
+import com.simple.controller.Controller;
+
+public class LoginFormController implements Controller {
+
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		// TODO Auto-generated method stub
-		return "form.jsp";
+		return "user/loginform.jsp";
 	}
 }

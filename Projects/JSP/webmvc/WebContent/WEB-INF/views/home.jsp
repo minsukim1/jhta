@@ -14,6 +14,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+<%@ include file="common/nav.jsp" %>
 <div class="container">
 	<div class="row">
 		<div class="col-12">
@@ -23,7 +24,7 @@
 	</div>
 	<div class="row">
 		<div class="col-12">
-			<h3>최근 등록된 책 <small class="float-right"><a href="list.hta">더보기</a></small></h3>
+			<h3>최근 등록된 책 <small class="float-right"><a href="book/list.hta">더보기</a></small></h3>
 			<table class="table">
 				<thead>
 					<tr>
