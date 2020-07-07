@@ -10,9 +10,11 @@ public class TodoDto {
 	private Date day;
 	private Date completedDay;
 	private String status;
+	private String statusClass;
 	private String userId;
 	private String userName;
 	private Date createDate;
+	private boolean canModify;
 	
 	public TodoDto() {}
 
@@ -59,9 +61,24 @@ public class TodoDto {
 	public String getStatus() {
 		return status;
 	}
-
+	public String getStatusClass() {
+		String value = "";
+		if("처리예정".equals(status)) {
+			value = "badge-primary";
+		} else if ("처리중".equals(status)) {
+			value = "badge-info";
+		} else if ("보류".equals(status)) {
+			value = "badge-secondary";
+		} else if ("취소".equals(status)) {
+			value = "badge-danger";
+		} else if ("처리완료".equals(status)) {
+			value = "badge-success";
+		}
+		return value;
+	}
 	public void setStatus(String status) {
 		this.status = status;
+		this.statusClass = getStatusClass();
 	}
 
 	public String getUserId() {
@@ -86,6 +103,14 @@ public class TodoDto {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public boolean isCanModify() {
+		return canModify;
+	}
+
+	public void setCanModify(boolean canModify) {
+		this.canModify = canModify;
 	}
 	
 	

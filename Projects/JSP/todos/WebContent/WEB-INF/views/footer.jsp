@@ -142,7 +142,7 @@
 				}
 			};
 			
-			xhr.open("post", "register.hta");
+			xhr.open("post", "/register.hta");
 			
 			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhr.send(data);
@@ -169,7 +169,7 @@
 			};
 			
 			// 서버와의 처리방법 등록, open메서드로 요청 초기화 xhr.open(method, url);
-			xhr.open("post", "login.hta");
+			xhr.open("post", "/login.hta");
 			
 			// 필요시 요청 헤더 설정 setRequestHeader메소드에의한 Content-Type 설정 등
 			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

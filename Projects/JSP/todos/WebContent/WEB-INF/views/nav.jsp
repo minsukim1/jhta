@@ -5,18 +5,20 @@
       		<li class="nav-item active">
         		<a class="nav-link" href="/home.hta">홈</a>
       		</li>
-      		<li class="nav-item">
-        		<a class="nav-link" href="/todos.hta">할일 관리</a>
+      		<c:if test="${not empty loginUser }">
+     		<li class="nav-item">
+        		<a class="nav-link" href="/todo/list.hta">할일 관리</a>
       		</li>
+      		</c:if>
     	</ul>
     	<ul class="navbar-nav navbar-dark bg-dark justify-content-end">
     	<c:choose>
     		<c:when test="${empty loginUser }">
       		<li class="nav-item">
-        		<a class="nav-link" href="#" onclick="openRegisterformModal(event)">회원가입</a>
+        		<a class="nav-link" href="/register.hta" onclick="openRegisterformModal(event)">회원가입</a>
       		</li>
       		<li class="nav-item">
-        		<a class="nav-link" href="#" onclick="openLoginformModal(event)">로그인</a>
+        		<a class="nav-link" href="/login.hta" onclick="openLoginformModal(event)">로그인</a>
       		</li>
       		</c:when>
       		<c:otherwise>
