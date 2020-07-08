@@ -14,7 +14,9 @@
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+<fmt:bundle basename="com.simple.resources.message">
 <div class="container">
+	<c:set var="position" value="todos" />
 	<%@ include file="nav.jsp" %>
 	
 	<!-- Content -->
@@ -80,11 +82,9 @@
 						<div class="col-6 ">
 							<ul class="pagination">
 								<li class="page-item"><a class="page-link" href="#">이전</a></li>
-								<li class="page-item"><a class="page-link" href="#" onclick="refreshList(1,event)">1</a></li>
-								<li class="page-item active"><a class="page-link" href="#" onclick="refreshList(2,event)">2</a></li>
-								<li class="page-item"><a class="page-link" href="#" onclick="refreshList(3,event)">3</a></li>
-								<li class="page-item"><a class="page-link" href="#" onclick="refreshList(4,event)">4</a></li>
-								<li class="page-item"><a class="page-link" href="#" onclick="refreshList(5,event)">5</a></li>
+								<c:forEach var="num" begin="${pagination.begin }" end="${pagination.end }">
+									<li class="page-item ${param.pageNo == num ? 'active' : '' }"><a class="page-link" href="#" onclick="refreshList(${num},event)">${num }</a></li>
+								</c:forEach>
 								<li class="page-item"><a class="page-link" href="#">다음</a></li>
 							</ul>
 						</div>
@@ -196,6 +196,7 @@
 	
 	<%@ include file="footer.jsp" %>	
 </div>
+</fmt:bundle>
 <script>
 	function openTodoFormModal() {
 		$("#modal-todo-form").modal('show');
