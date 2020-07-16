@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title>코로나 19 시/도별 발생 현황</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+  <style type="text/css">
+  	canvas {
+  		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+  	}
+  </style>
+</head>
+<body>
+<div class="container">
+ 	<div class="row mt-3">
+ 		<div class="col-6">
+ 			<h1>코로나 19 시/도별 발생 현황</h1>
+ 		</div>
+ 		<div class="col-3 offset-3">
+ 			<form class="form-inline mt-3">
+ 				<input type="date" class="form-control" id="search-date" />
+ 				<button id="btn-search" type="button" class="btn btn-primary btn-sm ml-3">조회</button>
+ 			</form>
+ 		</div>
+ 	</div>
+ 	
+ 	<div class="row">
+ 		<div class="col-12">
+ 			<div class="card card-primary">
+ 				<div class="card-header">
+ 					<h4 class="card-title">
+ 						시/도별 신규 확진자 현황
+ 						<button class="btn btn-sm btn-outline-secondary float-right">접기</button>
+ 					</h4>
+ 				</div>
+ 				<div class="card-body">
+ 					<canvas id="covid19-canvas">
+ 					</canvas>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+ 	<div class="row mt-3">
+ 		<div class="col-4">
+ 			<div class="card card-info">
+ 				<div class="card-header">오늘 확진자 현황</div>
+ 				<div class="card-body">
+ 					<table class="table table-bordered">
+ 						<colgroup>
+ 							<col width="60%">
+ 							<col width="40%">
+ 						</colgroup>
+ 						<tbody>
+ 							<tr>
+ 								<th>신규 확진자 수</th>
+ 								<td id="covid19-new"></td>
+ 							</tr>
+ 							<tr>
+ 								<th>지역 확진자 수</th>
+ 								<td id="covid19-local"></td>
+ 							</tr>
+ 							<tr>
+ 								<th>해외유입 확진자 수</th>
+ 								<td id="covid19-overflow"></td>
+ 							</tr>
+ 							<tr>
+ 								<th>총 사망자 수</th>
+ 								<td id="covid19-deayh"></td>
+ 							</tr>
+ 							<tr>
+ 								<th>총 확진자 수</th>
+ 								<td id="covid19-total"></td>
+ 							</tr>
+ 						</tbody>
+ 					</table>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+ </div>	
+ <script type="text/javascript">
+ $(function() {
+	 $("#btn-search").click(function() {
+			if($("#search-date").val() == ""){
+				alert("날짜를 선택하세요");
+				return;
+			}
+			updateCovid19();
+		});
+	 var sido = ["검역", "제주", "경남", "경북", "전남", "전북", "충남", "충북", "강원", "경기", "세종", "울산", "대전", "광주", "인천", "대구", "부산", "서울"];
+ 	 var covid19Items = [];
+ 	 var covid19Total = {};
+ 	 var covidBarChart;
+ 	 var barChartData = {
+ 			 labels: sido,
+ 			 datasets:[{
+ 				 label:"지역내 확진자",
+ 				 borderWidth:1,
+ 				 backgroundColor:'red',
+ 				 data: []
+ 			 },{
+ 				 label:"해외유입 확진자",
+ 				 borderWidth:1,
+ 				 backgroundColor:'orange',
+ 				 data: []
+ 			 }]
+ 	 };
+ 	 function drawBarChart() {
+ 		barChartData.datasets[0].data.length = 0;
+ 		barChartData.datasets[1].data.length = 0;
+ 		 for (var index=0; index<covid19Items.length; index++){
+ 			 var covid19Item = covid19Items[index];
+ 			 barChartData.datasets[0].data.push(covid19Item.localOccCnt);
+ 			 barChartData.datasets[1].data.push(covid19Item.overFlowCnt);
+ 		 }
+ 		 if(covidBarChart){
+ 			covidBarChart.update();
+ 		 }else {
+ 			 var ctx = document.getElementById("covid19-canvas").getContext('2d');
+ 	 		 covidBarChart = new Chart(ctx, {
+ 	 			 type: "bar",
+ 	 		 	 data: barChartData,
+ 	 		 	 options: {
+ 	 				responsive: true,
+ 	 				legend: {
+ 	 					position: 'top'
+ 	 				},
+ 	 				title: {
+ 	 					display: true,
+ 	 					text: "시/도별 신규 확진자 현황"
+ 	 				}
+ 	 		 	}
+ 	 		});
+ 		 }
+ 	 }
+ 	 function updateCovid19() {
+ 		var reqParam = {
+ 				pageNo: 1,
+ 				startCreateDt: getSearchDate(),
+ 				endCreateDt: getSearchDate()
+ 			}
+ 		
+ 		$.get("/jquery/covid19sido", reqParam,function(xmlDoc){
+ 			covid19Items.length = 0;
+ 			var items = $(xmlDoc).find("item");
+ 			for (var index in items){
+ 				var $item = $(items[index]);
+ 				
+ 				if($item.find("gubun").text() == "합계"){
+ 					covid19Total = {
+ 						defCnt: parseInt($item.find("defCnt").text()),			
+ 	 					deathCnt: parseInt($item.find("deathCnt").text()),		
+ 	 					incDec: parseInt($item.find("incDec").text()),		
+ 	 					localOccCnt: parseInt($item.find("localOccCnt").text()), 
+ 	 					overFlowCnt: parseInt($item.find("overFlowCnt").text())	
+ 					}
+ 					break;
+ 				}
+ 				var covid19Item = {
+ 						gubun: $item.find("gubun").text(),		
+ 						defCnt: parseInt($item.find("defCnt").text()),			
+ 						deathCnt: parseInt($item.find("deathCnt").text()),		
+ 						incDec: parseInt($item.find("incDec").text()),		
+ 						localOccCnt: parseInt($item.find("localOccCnt").text()), 
+ 						overFlowCnt: parseInt($item.find("overFlowCnt").text())
+ 				}
+ 				covid19Items.push(covid19Item);
+ 			}
+ 			drawBarChart();
+ 			updateCovid19Table();
+ 		});
+ 	 }
+ 	 
+ 	function updateCovid19Table(){
+ 		$("#covid19-new").text(covid19Total.incDec);
+ 		$("#covid19-local").text(covid19Total.localOccCnt);
+ 		$("#covid19-overflow").text(covid19Total.overFlowCnt);
+ 		$("#covid19-death").text(covid19Total.deathCnt);
+ 		$("#covid19-total").text(covid19Total.defCnt);
+ 	}
+ 	function getSearchDate() {
+		var searchDate = $("#search-date").val();
+		if (searchDate == ""){
+			var dateObj = getDate();
+			
+			$("#search-date").val(dateObj.date)
+			return dateObj.searchDate;
+		} else {
+			return searchDate.replace(/-/g,'');
+		}
+	}
+	
+	function getDate() {
+			var now = new Date();
+			var year = now.getFullYear();
+			var month = now.getMonth() + 1;
+			var day = now.getDate();
+			
+			var date = year + "-" + (month<10 ? "0"+month : month) + "-" + (day<10 ? "0"+day : day);
+			var searchDate = date.replace(/-/g,"");
+			
+			return {
+				"date" : date,
+				"searchDate" : searchDate
+			}
+
+	}
+	updateCovid19();
+ })
+ </script>
+</body>
+</html>
