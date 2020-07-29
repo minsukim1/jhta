@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.co.jhta.dao.BlogCommentDao">
+
+	<select id="getCommentsByBlogNo" parameterType="int" resultType="Comment">
+		select
+			A.comment_no				as no,
+			A.comment_writer			as "writer.id",
+			B.user_name					as "writer.name",
+			A.comment_content			as content,
+			A.blog_no					as "blog.no",
+			A.comment_created_date		as createdDate
+		from
+			spring_blog_comments A, spring_users B
+		where
+			A.comment_writer = B.user_id
+			and A.blog_no = #{value}
+		order by
+			A.comment_no asc
+	</select>
+	
+	<select id="getCommentsByWriter" parameterType="string" resultType="Comment">
+		select
+			A.comment_no				as no,
+			A.comment_writer			as "writer.id",
+			B.user_name					as "writer.name",
+			A.comment_content			as content,
+			A.blog_no					as "blog.no",
+			A.comment_created_date		as createdDate
+		from
+			spring_blog_comments A, spring_users B
+		where
+			A.comment_writer = B.user_id
+			and A.comment_writer = #{value}
+		order by
+			A.comment_no desc
+	</select>
+	
+	<insert id="insertComment" parameterType="Comment">
+		insert into spring_blog_comments
+		(comment_no, comment_writer, comment_content, blog_no)
+		values
+		(spring_comment_seq.nextval, #{writer.id}, #{content}, #{blog.no})
+	</insert>
+	
+	<delete id="deleteCommentByNo" parameterType="int">
+		delete from spring_blog_comments
+		where comment_no = #{value}
+	</delete>
+	
+	<!-- blog_no 에 해당하는 댓글 전부 지우기 -->
+	<delete id="deleteCommentsByBlogNo" parameterType="int">
+		delete from spring_blog_comments
+		where blog_no = #{value}
+	</delete>
+	
+	<!-- 작성자가 쓴 댓글 전부지우기 ex:탈퇴 -->
+	<delete id="deleteCommentsByWriter" parameterType="string">
+		delete from spring_blog_comments
+		where comment_writer = #{value}
+	</delete>
+</mapper>
