@@ -10,6 +10,7 @@
 	
 	<context:annotation-config />
 	<context:component-scan base-package="kr.co.jhta.web" />
+	<context:component-scan base-package="kr.co.jhta.view" />
 	<mvc:annotation-driven />
 	<mvc:view-resolvers >
 		<mvc:jsp prefix="/WEB-INF/views/" suffix=".jsp"/>

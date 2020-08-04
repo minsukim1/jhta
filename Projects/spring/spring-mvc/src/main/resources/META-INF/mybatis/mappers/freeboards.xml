@@ -37,7 +37,7 @@
 			board_deleted		as deleted,
 			board_created_date	as createdDate,
 			board_updated_date  as updatedDate,
-			board_daleted_date	as deletedDate
+			board_deleted_date	as deletedDate
 		from
 			spring_free_boards
 		where
@@ -50,7 +50,7 @@
 		set
 			board_title = #{title},
 			board_content = #{content},
-			board_filename = #{filname},
+			board_filename = #{filename},
 			board_likes = #{likes},
 			board_deleted = #{deleted},
 			board_updated_date = #{updatedDate},
