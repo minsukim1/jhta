@@ -1,6 +1,7 @@
 package kr.co.jhta.vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class User {
 
@@ -12,8 +13,17 @@ public class User {
 	private int age;
 	private Date birth;
 	private Date createdDate;
+	private List<String> roles;
 	
 	public User() {}
+	
+	public List<String> getRoles() {
+		return roles;
+	}
+	
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
 
 	public String getId() {
 		return id;
@@ -55,6 +65,13 @@ public class User {
 		this.tel = tel;
 	}
 
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
 
 	public Date getBirth() {
 		return birth;
@@ -64,14 +81,6 @@ public class User {
 		this.birth = birth;
 	}
 
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -79,6 +88,7 @@ public class User {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+	
 	
 	
 }

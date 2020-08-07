@@ -58,6 +58,11 @@ public class Delivery {
 	public void setOrderNo(long orderNo) {
 		this.orderNo = orderNo;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Delivery [no=" + no + ", username=" + username + ", tel=" + tel + ", address=" + address + ", status="
+				+ status + ", orderNo=" + orderNo + "]";
+	}
 	
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-config.dtd" >
+	
 <configuration>
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL"/>
@@ -13,12 +15,19 @@
 		<typeAlias type="kr.co.jhta.vo.Order" alias="Order"/>
 		<typeAlias type="kr.co.jhta.vo.Payment" alias="Payment"/>
 		<typeAlias type="kr.co.jhta.vo.Product" alias="Product"/>
+		<typeAlias type="kr.co.jhta.vo.User" alias="User"/>
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="META-INF/mybatis/mappers/freeboards.xml"/>
 		<mapper resource="META-INF/mybatis/mappers/categories.xml"/>
+		<mapper resource="META-INF/mybatis/mappers/freeboards.xml"/>
 		<mapper resource="META-INF/mybatis/mappers/orders.xml"/>
 		<mapper resource="META-INF/mybatis/mappers/products.xml"/>
+		<mapper resource="META-INF/mybatis/mappers/roles.xml"/>
+		<mapper resource="META-INF/mybatis/mappers/users.xml"/>
 	</mappers>
 </configuration>
+
+
+
+

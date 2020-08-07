@@ -8,7 +8,7 @@
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	
-	<!-- oracle jdbc driver를 제공하는 메이븐 저장소 -->
+	<!-- oracle jdbc driver를 제공하는 메이븐 저장소  -->
 	<repositories>
 		<repository>
 			<id>oracle-jdbc</id>
@@ -25,7 +25,7 @@
 	</properties>
 	
 	<dependencies>
-		<!-- Spring의 핵심 라이브러리 의존성 설정 -->
+		<!-- 스프링의 핵심 라이브러리 의존성 설정 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -38,23 +38,13 @@
 				 </exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
-		    <groupId>commons-fileupload</groupId>
-		    <artifactId>commons-fileupload</artifactId>
-		    <version>1.4</version>
-		</dependency>
-		
-		<dependency>
-          <groupId>org.hibernate.validator</groupId>
-          <artifactId>hibernate-validator</artifactId>
-          <version>6.1.5.Final</version>
-      	</dependency>
-      
+		<!-- Spring MVC 패턴 웹 애플리케이션 개발을 지원하는 라이브러리 의존성 설정 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+		<!-- Database Access와 트랜잭션 처리를 지원하는 라이브러리 의존성 설정  -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
@@ -64,30 +54,54 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 			<version>${org.springframework-version}</version>
-		</dependency>		
+		</dependency>
+		<!-- oracle jdbc driver 의존성 설정  -->
 		<dependency>
 			<groupId>com.oracle.jdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
 			<version>12.2.0.1</version>
 		</dependency>
+		<!-- mybatis 기능과 spring  연동을 지원하는 라이브러리 -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
 		    <artifactId>mybatis</artifactId>
 		    <version>3.5.5</version>
 		</dependency>
-		
 		<dependency>
 		    <groupId>org.mybatis</groupId>
 		    <artifactId>mybatis-spring</artifactId>
 		    <version>2.0.5</version>
 		</dependency>
-		<!-- 커넥션 풀을 지원하는 라이브러리 의존성 설정 -->
+		<!-- 커넥션 풀을 지원하는 라이브러리 의존성 설정  -->
 		<dependency>
 		    <groupId>org.apache.commons</groupId>
 		    <artifactId>commons-dbcp2</artifactId>
 		    <version>2.7.0</version>
+		</dependency>	
+
+		<!-- 파일 업로드를 지원하는 라이브러리 의존성 설정 -->		
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.4</version>
 		</dependency>
-						
+		
+		<!-- 폼 입력값 유효성 검증을 지원하는 라이브러리 -->
+		<dependency>
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>6.1.5.Final</version>
+		</dependency>
+		
+		<!-- json 형식의 데이터를 처리하는 라이브러리 의존성 추가 -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.11.2</version>
+		</dependency>
+		
+			
+				
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>

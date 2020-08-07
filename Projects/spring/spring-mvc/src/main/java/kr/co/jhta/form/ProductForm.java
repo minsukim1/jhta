@@ -1,11 +1,12 @@
 package kr.co.jhta.form;
 
 public class ProductForm {
-	
+
 	private String catId;
 	private String name;
 	private long price;
 	private long discountPrice;
+	
 	public String getCatId() {
 		return catId;
 	}

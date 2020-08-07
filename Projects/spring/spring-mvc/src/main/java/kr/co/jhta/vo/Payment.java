@@ -40,6 +40,10 @@ public class Payment {
 	public void setOrderNo(long orderNo) {
 		this.orderNo = orderNo;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Payment [no=" + no + ", type=" + type + ", account=" + account + ", orderNo=" + orderNo + "]";
+	}
 	
 }

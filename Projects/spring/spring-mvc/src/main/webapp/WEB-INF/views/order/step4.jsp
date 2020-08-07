@@ -15,10 +15,10 @@
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
-				<form method="post" action="step3.do">
+				<form method="post" action="step4.do">
 					<div class="card-header">구매상품</div>
 					<div class="card-body">
-						<table class="table table-bordered table-sm">
+						<table class="table table-bordered">
 							<tbody>
 								<tr>
 									<th>상품이름</th>
@@ -52,26 +52,24 @@
 									<th>계좌(카드)번호</th>
 									<td>${orderForm.payAccount }</td>
 								</tr>
+								<tr>
+									<th>수령자 이름</th>
+									<td>${orderForm.receiverUsername }</td>
+								</tr>
+								<tr>
+									<th>수령자 연락처</th>
+									<td>${orderForm.receiverTel }</td>
+								</tr>
+								<tr>
+									<th>수령자 주소</th>
+									<td>${orderForm.receiverAddress }</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
-					<div class="card-body">
-						<div class="form-group">
-							<label>수령자 이름</label>
-							<input type="text" class="form-control" name="receiverUsername" >
-						</div>
-						<div class="form-group">
-							<label>수령자 전화번호</label>
-							<input type="text" class="form-control" name="receiverTel"  >
-						</div>
-						<div class="form-group">
-							<label>수령자 주소</label>
-							<input type="text" class="form-control" name="receiverAddress"  >
-						</div>
-					</div>
 					<div class="card-footer text-right">
 						<a href="cancel.do" class="btn btn-secondary">취소</a>
-						<button type="submit" class="btn btn-primary">다음</button>
+						<button type="submit" class="btn btn-primary">주문</button>
 					</div>
 				</form>
 			</div>

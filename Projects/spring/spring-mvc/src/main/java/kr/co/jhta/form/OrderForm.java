@@ -11,7 +11,7 @@ public class OrderForm {
 	private int amount;
 	private long price;
 	
-	// 결제관련
+	// 결재관련
 	private String payType;
 	private String payAccount;
 	
@@ -19,6 +19,25 @@ public class OrderForm {
 	private String receiverUsername;
 	private String receiverTel;
 	private String receiverAddress;
+	
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public long getProductPrice() {
+		return productPrice;
+	}
+	public void setProductPrice(long productPrice) {
+		this.productPrice = productPrice;
+	}
+	public long getProductDiscountPrice() {
+		return productDiscountPrice;
+	}
+	public void setProductDiscountPrice(long productDiscountPrice) {
+		this.productDiscountPrice = productDiscountPrice;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -78,25 +97,6 @@ public class OrderForm {
 	}
 	public void setReceiverAddress(String receiverAddress) {
 		this.receiverAddress = receiverAddress;
-	}
-	
-	public String getProductName() {
-		return productName;
-	}
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-	public long getProductPrice() {
-		return productPrice;
-	}
-	public void setProductPrice(long productPrice) {
-		this.productPrice = productPrice;
-	}
-	public long getProductDiscountPrice() {
-		return productDiscountPrice;
-	}
-	public void setProductDiscountPrice(long productDiscountPrice) {
-		this.productDiscountPrice = productDiscountPrice;
 	}
 	@Override
 	public String toString() {

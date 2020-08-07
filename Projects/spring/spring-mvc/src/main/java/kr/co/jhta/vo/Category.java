@@ -6,10 +6,10 @@ public class Category {
 	private String name;
 	
 	public Category() {}
-
 	public Category(String id) {
 		this.id = id;
 	}
+
 	public String getId() {
 		return id;
 	}
@@ -25,6 +25,5 @@ public class Category {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	
 }

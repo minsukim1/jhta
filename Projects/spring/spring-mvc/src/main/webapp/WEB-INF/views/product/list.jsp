@@ -11,61 +11,61 @@
 <title>쇼핑몰</title>
 </head>
 <body>
-	<div class="container mt-3 mb-5">
-		<div class="row">
-			<div class="col-12">
-				<div class="card">
-					<div class="card-header">
-						제품리스트
-						<select class="float-right w-25">
-							<option value=""> 전체 </option>
+<div class="container mt-3 mb-5">
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-header">
+					제품리스트
+					<select class="float-right w-25">
+						<option value=""> 전체</option>
 						<c:forEach var="category" items="${categories }">
-							<option value="${category.id }">${category.name }</option>
+							<option value="${category.id }"> ${category.name }</option>
 						</c:forEach>
-						</select>
-					</div>
-					<div class="card-body">
-						<table class="table">
-							<colgroup>
-								<col width="10%">
-								<col width="40%">
-								<col width="20%">
-								<col width="15%">
-								<col width="10%">
-							</colgroup>
-							<thead>
+					</select>
+				</div>
+				<div class="card-body">
+					<table class="table">
+						<colgroup>
+							<col width="10%">
+							<col width="40%">
+							<col width="20%">
+							<col width="15%">
+							<col width="10%">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>번호</th>
+								<th>상품명</th>
+								<th>가격 (할인가격)</th>
+								<th>남은 재고</th>
+								<th>구매</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="product" items="${products }">
 								<tr>
-									<th>번호</th>						
-									<th>상품명</th>						
-									<th>가격 (할인가격)</th>						
-									<th>남은 재고</th>						
-									<th>구매</th>						
+									<td>${product.no }</td>
+									<td>${product.name }</td>
+									<td>
+										<fmt:formatNumber value="${product.price }" /> 원 
+										(<span class="text-weight-bold text-danger">
+										 <fmt:formatNumber value="${product.discountPrice }" /> 원
+										</span>)
+									</td>
+									<td><fmt:formatNumber value="${product.stock }"/> 개 </td>
+									<td><a href="/order/step1.do?no=${product.no }" class="btn btn-success btn-sm">구매하기</a></td>
 								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="product" items="${products }">
-									<tr>
-										<td>${product.no }</td>
-										<td>${product.name }</td>
-										<td>
-											<fmt:formatNumber value="${product.price }" /> 원
-											(<span class="text-weight-bold text-danger">
-											<fmt:formatNumber value="${product.discountPrice }" />원</span>)
-										</td>
-										<td><fmt:formatNumber value="${product.stock }" /> 개</td>
-										<td><a href="/order/step1.do?no=${product.no }" class="btn btn-success btn-sm">구매하기</a> </td>
-									</tr>	
-									
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
-					<div class="card-footer text-right">
-						<a href="add.do" class="btn btn-primary">등록</a>
-					</div>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<div class="card-footer text-right">
+					<a href="add.do" class="btn btn-primary">제품 등록</a>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 </html>

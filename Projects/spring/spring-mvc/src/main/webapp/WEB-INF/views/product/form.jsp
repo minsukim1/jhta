@@ -11,43 +11,45 @@
 <title>쇼핑몰</title>
 </head>
 <body>
-	<div class="container mt-3 mb-5">
-		<div class="row">
-			<div class="col-12">
-				<form id="product-form" method="post" action="add.do">
-					<div class="card">
-						<div class="card-header">새 상품 등록폼</div>
-						<div class="card-body">
-							<div class="form-group">
-								<label>카테고리</label>
-								<select class="form-control" name="catId">
-									<option value="" selected disabled> -- 선택하세요 -- </option>
-									<c:forEach var="category" items="${categories }">
-										<option value="${category.id }">${category.name } </option>	
-									</c:forEach>
-								</select>
-							</div>
-							<div class="form-group">
-								<label>상품 이름</label>
-								<input type="text" class="form-control" name="name" id="product-name" />
-							</div>
-							<div class="form-group">
-								<label>상품 가격</label>
-								<input type="number" class="form-control" name="price" id="product-price" />
-							</div>
-							<div class="form-group">
-								<label>상품 할인가격</label>
-								<input type="number" class="form-control" name="discountPrice" id="product-discount-price" />
-							</div>
+<div class="container mt-3 mb-5">
+	<div class="row">
+		<div class="col-12">
+			<form id="product-form" method="post" action="add.do">
+				<div class="card">
+					<div class="card-header">새 상품 등록폼</div>
+					<div class="card-body">
+						<div class="form-group">
+							<label>카테고리</label>
+							<select class="form-control" name="catId" id="category-id">
+								<option value="" selected disabled> -- 선택하세요 --</option>
+								<c:forEach var="category" items="${categories }">
+									<option value="${category.id }"> ${category.name }</option>
+								</c:forEach>
+							</select>
 						</div>
-						<div class="card-footer">
-							<a href="list.do" class="btn btn-secondary">취소</a>
-							<button type="submit" class="btn btn-primary">등록</button>
+						<div class="form-group">
+							<label>상품 이름</label>
+							<input type="text" class="form-control" name="name" id="product-name"/>
+						</div>
+						<div class="form-group">
+							<label>상품 가격</label>
+							<input type="number" class="form-control" name="price" id="product-price"/>
+						</div>
+						<div class="form-group">
+							<label>상품 할인가격</label>
+							<input type="number" class="form-control" name="discountPrice" id="product-discount-price"/>
 						</div>
 					</div>
-				</form>
-			</div>
+					<div class="card-footer text-right">
+						<a href="list.do" class="btn btn-secondary">취소</a>
+						<button type="submit" class="btn btn-primary">등록</button>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
+</div>
 </body>
 </html>
+
+

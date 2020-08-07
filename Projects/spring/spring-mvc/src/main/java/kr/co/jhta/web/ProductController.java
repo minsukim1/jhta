@@ -22,19 +22,18 @@ import kr.co.jhta.vo.Product;
  * 		- Model객체에 지정된 이름으로 정보를 저장한다.
  * 			@ModelAttribute("이름")
  * 			public 객체 메소드() {	// 해당 컨트롤러에 정의된 요청이 올 때마다 메소드가 실행된다.
- * 				return 객체		// 메소드가 반환하는 값은 Model객체에 저장된다.
- * 								// 이 컨트롤러와 관련된 모든 화면에서 Model에 저장된 정보를 사용할 수 있다.
- * 			}
- * 		- Model객체에서 지정된 이름으로 정보를 가져온다.
+ * 				return 객체			// 메소드가 반환하는 값은 Model객체에 저장된다.
+ * 			}						// 이 컨트롤러와 관련된 모든 화면에서 Model에 저장된 정보를 사용할 수 있다.
+ * 			
+ * 		- Model객체에서 지정된 이름을 정보를 가져온다.
  * 			@RequestMapping("/경로")
- * 			public String 메소드 (@ModelAttribute("이름") 객체 변수명, ...) {
- * 
- * 			}
+ * 			public String 메소드(@ModelAttribute("이름") 객체 변수명, ...) {
+ * 				
+ * 			} 
  */
 
 @Controller
 @RequestMapping("/product")
-@SessionAttributes("categories")
 public class ProductController {
 
 	@Autowired
@@ -48,13 +47,10 @@ public class ProductController {
 	
 	@GetMapping("/list.do")
 	public String products(Model model) {
-		List<Category> categories = productService.getAllCategories();
 		List<Product> products = productService.getAllProducts();
-		
-		model.addAttribute("categories", categories);
 		model.addAttribute("products", products);
 		
-		return "product/list";	// WEB-INF/views/product/list.jsp
+		return "product/list";	// /WEB-INF/views/product/list.jsp
 	}
 	
 	@GetMapping("/add.do")
@@ -70,6 +66,16 @@ public class ProductController {
 		product.setCategory(new Category(productForm.getCatId()));
 		
 		productService.addNewProduct(product);
+		
 		return "redirect:list.do";
 	}
+	
 }
+
+
+
+
+
+
+
+

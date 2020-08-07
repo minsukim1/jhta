@@ -20,7 +20,6 @@ public class Order {
 		this.no = no;
 	}
 
-
 	public String getUsername() {
 		return username;
 	}
@@ -52,11 +51,11 @@ public class Order {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+
 	@Override
 	public String toString() {
 		return "Order [no=" + no + ", username=" + username + ", tel=" + tel + ", status=" + status + ", createdDate="
 				+ createdDate + "]";
 	}
-	
 	
 }

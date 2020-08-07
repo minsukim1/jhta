@@ -49,6 +49,11 @@ public class Item {
 	public void setOrderNo(long orderNo) {
 		this.orderNo = orderNo;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Item [no=" + no + ", price=" + price + ", amount=" + amount + ", productNo=" + productNo + ", orderNo="
+				+ orderNo + "]";
+	}
 	
 }
